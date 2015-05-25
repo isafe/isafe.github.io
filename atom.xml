@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[iSec]]></title>
+  <subtitle><![CDATA[i安全]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://blog.isec.me/"/>
+  <updated>2015-05-25T00:01:30.000Z</updated>
+  <id>http://blog.isec.me/</id>
+  
+  <author>
+    <name><![CDATA[苏格兰雨季]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hexo静态博客使用指南]]></title>
+    <link href="http://blog.isec.me/2015/05/24/Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    <id>http://blog.isec.me/2015/05/24/Hexo静态博客使用指南/</id>
+    <published>2015-05-24T23:41:36.000Z</published>
+    <updated>2015-05-25T00:01:30.000Z</updated>
+    <content type="html"><![CDATA[<p>安装Hexo</p>
+<p>yum install npm -y<br>npm config set registry <a href="http://registry.npm.taobao.org/" target="_blank" rel="external">http://registry.npm.taobao.org/</a><br>npm install hexo-cli -g</p>
+<p>hexo init blog<br>cd blog</p>
+<p>Hexo常用插件安装与配置</p>
+<p>npm install hexo —save<br>npm install hexo-generator-index —save<br>npm install hexo-generator-archive —save<br>npm install hexo-generator-category —save<br>npm install hexo-generator-tag —save<br>npm install hexo-server —save<br>npm install hexo-deployer-git —save</p>
+<p>cd blog<br>npm install<br>cd themes<br>git clone <a href="https://github.com/moretwo/hexo-theme.git" target="_blank" rel="external">https://github.com/moretwo/hexo-theme.git</a> </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>安装Hexo</p>
+<p>yum install npm -y<br>npm config set registry <a href="http://registry.npm.taobao.org/" target="_blank" rel="external">http]]>
+    </summary>
+    
+      <category term="Hexo" scheme="http://blog.isec.me/tags/Hexo/"/>
+    
+      <category term="前端" scheme="http://blog.isec.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Hexo" scheme="http://blog.isec.me/categories/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://blog.isec.me/2015/05/24/hello-world/"/>
+    <id>http://blog.isec.me/2015/05/24/hello-world/</id>
+    <published>2015-05-24T23:21:12.000Z</published>
+    <updated>2015-05-24T23:21:12.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+  </entry>
+  
+</feed>
