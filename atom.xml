@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[iSec]]></title>
-  <subtitle><![CDATA[i安全]]></subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.isec.me/"/>
   <updated>2015-05-25T00:01:30.000Z</updated>
