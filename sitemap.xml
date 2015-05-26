@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.isec.me/categories/index.html</loc>
+    <lastmod>2015-05-26T23:57:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.isec.me/tags/index.html</loc>
+    <lastmod>2015-05-26T23:57:08.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.isec.me/2015/05/24/Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2015-05-26T23:54:36.000Z</lastmod>
   </url>
