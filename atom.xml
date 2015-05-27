@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.isec.me/"/>
-  <updated>2015-05-26T23:54:36.000Z</updated>
+  <updated>2015-05-27T00:06:47.000Z</updated>
   <id>http://blog.isec.me/</id>
   
   <author>
@@ -19,17 +19,15 @@
     <link href="http://blog.isec.me/2015/05/24/Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
     <id>http://blog.isec.me/2015/05/24/Hexo静态博客使用指南/</id>
     <published>2015-05-24T23:41:36.000Z</published>
-    <updated>2015-05-26T23:54:36.000Z</updated>
-    <content type="html"><![CDATA[<p>安装Hexo</p>
-<p>yum install npm -y<br>npm config set registry <a href="http://registry.npm.taobao.org/" target="_blank" rel="external">http://registry.npm.taobao.org/</a><br>npm install hexo-cli -g</p>
-<p>hexo init blog<br>cd blog</p>
+    <updated>2015-05-27T00:06:47.000Z</updated>
+    <content type="html"><![CDATA[<p>安装Hexo<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install npm -<span class="literal">y</span></span><br><span class="line">npm config <span class="keyword">set</span> registry http:<span class="comment">//registry.npm.taobao.org/</span></span><br><span class="line">npm install hexo-<span class="keyword">cli</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">hexo</span> init <span class="keyword">blog</span><br><span class="line"></span><span class="label">cd</span> <span class="keyword">blog</span></span><br></pre></td></tr></table></figure>
 <p>Hexo常用插件安装与配置</p>
-<p>npm install hexo —save<br>npm install hexo-generator-index —save<br>npm install hexo-generator-archive —save<br>npm install hexo-generator-category —save<br>npm install hexo-generator-tag —save<br>npm install hexo-server —save<br>npm install hexo-deployer-git —save</p>
-<p>cd blog<br>npm install<br>cd themes<br>git clone <a href="https://github.com/moretwo/hexo-theme.git" target="_blank" rel="external">https://github.com/moretwo/hexo-theme.git</a> </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">index</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-archive <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-category <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-tag <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-<span class="keyword">server</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line"><span class="keyword">cd</span> themes</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/moretwo/hexo-theme.git</span><br></pre></td></tr></table></figure>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>安装Hexo</p>
-<p>yum install npm -y<br>npm config set registry <a href="http://registry.npm.taobao.org/" target="_blank" rel="external">http]]>
+    <![CDATA[<p>安装Hexo<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><b]]>
     </summary>
     
       <category term="Hexo" scheme="http://blog.isec.me/tags/Hexo/"/>
