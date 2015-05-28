@@ -22,7 +22,7 @@
 
 
 
-  <meta name="keywords" content="iSec, Python, 安全" />
+  <meta name="keywords" content="PostgreSQL," />
 
 
 
@@ -48,7 +48,7 @@
 
 
 
-  <title> Hello World // iSec </title>
+  <title> CentOS 6.5 源码安装PostgreSQL // iSec </title>
 </head>
 
 <body>
@@ -136,7 +136,7 @@
           
           
             
-              Hello World
+              CentOS 6.5 源码安装PostgreSQL
             
           
         </h1>
@@ -144,17 +144,28 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2015-05-24
+          發表於 2015-05-27
         </span>
 
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分類於
+            
+              <a href="/categories/CentOS/">CentOS</a>
+
+              
+              
+
+            
+          </span>
         
 
         
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/05/24/hello-world/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/hello-world/"></span>
+            <a href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/27/CentOS-6-5-源码安装PostgreSQL/"></span>
             </a>
           </span>
           
@@ -168,31 +179,59 @@
       
 
       
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="安装依赖：">安装依赖：</h3><pre><code>yum install <span class="keyword">readline</span> <span class="keyword">readline</span>-devel make zlib zlib-devel 
+</code></pre><h3 id="下载源码：">下载源码：</h3><pre><code>wget <span class="string">https:</span><span class="comment">//ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz</span>
+tar -zxf postgresql-<span class="number">9.3</span>.2.tar.gz
+cd postgresql-<span class="number">9.3</span>.2
+.<span class="regexp">/configure --prefix=/</span>usr<span class="regexp">/local/</span>pgsql  --with-openssl 
+gmake
+gmake install
+</code></pre><h3 id="添加postgres用户，PostgreSQL的默认超级管理员">添加postgres用户，PostgreSQL的默认超级管理员</h3><pre><code>groupadd postgres    
+adduser -g postgres postgres
+mkdir <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
+chown <span class="string">postgres:</span>postgres <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
+</code></pre><h3 id="测试">测试</h3><pre><code>su - postgres
+<span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/psql -V</span>
+</code></pre><h3 id="初始数据库的存储区间">初始数据库的存储区间</h3><pre><code><span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/initdb -D /u</span>sr<span class="regexp">/local/</span>pgsql<span class="regexp">/data --locale=en_US.UTF8 -U postgres</span>
+</code></pre><h3 id="指定数据目录启动数据库服务器(输出重定向到logfile，并且运行在后台，也可以用pg_ctl来启动)">指定数据目录启动数据库服务器(输出重定向到logfile，并且运行在后台，也可以用pg_ctl来启动)</h3><pre><code>cp contrib<span class="regexp">/start-scripts/</span>linux <span class="regexp">/etc/</span>init.d/postgresql
+chmod a+x <span class="regexp">/etc/</span>init.d/postgresql
+<span class="regexp">/etc/</span>init.d/postgresql start
+</code></pre><h3 id="连接进数据库">连接进数据库</h3><pre><code>/usr/<span class="keyword">local</span>/pgsql/bin/createdb <span class="keyword">test</span>
+/usr/<span class="keyword">local</span>/pgsql/bin/psql -<span class="keyword">U</span> postgres <span class="keyword">test</span>
+</code></pre><h3 id="安装完成后，最好配置一下动态连接库的搜索路径和环境变量，即在~-/bash_profile添加如下内容：">安装完成后，最好配置一下动态连接库的搜索路径和环境变量，即在~./bash_profile添加如下内容：</h3><pre><code>PGHOME=/usr/<span class="built_in">local</span>/pgsql
+PGDATA=<span class="variable">$PGHOME</span>/data
+PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$PGHOME</span>/bin
+<span class="built_in">export</span> PGHOME
+<span class="built_in">export</span> PGDATA
+<span class="built_in">export</span> PATH
+----------------------------
+LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/pgsql/lib
+<span class="built_in">export</span> LD_LIBRARY_PATH 
+PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$PATH</span>
+<span class="built_in">export</span> PATH
+</code></pre><p>PostgreSQL9.3安装完成。</p>
 
       
     </div>
 
     <div class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/PostgreSQL/"> #PostgreSQL </a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/24/Hexo静态博客使用指南/">Hexo静态博客使用指南</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/24/Hexo静态博客使用指南/">Hexo静态博客使用指南</a>
             
           </div>
         </div>
@@ -208,8 +247,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/05/24/hello-world/"
-               data-title="Hello World" data-url="http://blog.isec.me/2015/05/24/hello-world/">
+          <div class="ds-thread" data-thread-key="2015/05/27/CentOS-6-5-源码安装PostgreSQL/"
+               data-title="CentOS 6.5 源码安装PostgreSQL" data-url="http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/">
           </div>
         
       </div>
@@ -311,7 +350,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖："><span class="nav-number">1.</span> <span class="nav-text">安装依赖：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载源码："><span class="nav-number">2.</span> <span class="nav-text">下载源码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加postgres用户，PostgreSQL的默认超级管理员"><span class="nav-number">3.</span> <span class="nav-text">添加postgres用户，PostgreSQL的默认超级管理员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始数据库的存储区间"><span class="nav-number">5.</span> <span class="nav-text">初始数据库的存储区间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定数据目录启动数据库服务器(输出重定向到logfile，并且运行在后台，也可以用pg_ctl来启动)"><span class="nav-number">6.</span> <span class="nav-text">指定数据目录启动数据库服务器(输出重定向到logfile，并且运行在后台，也可以用pg_ctl来启动)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接进数据库"><span class="nav-number">7.</span> <span class="nav-text">连接进数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装完成后，最好配置一下动态连接库的搜索路径和环境变量，即在~-/bash_profile添加如下内容："><span class="nav-number">8.</span> <span class="nav-text">安装完成后，最好配置一下动态连接库的搜索路径和环境变量，即在~./bash_profile添加如下内容：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

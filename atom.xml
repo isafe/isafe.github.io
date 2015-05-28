@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.isec.me/"/>
-  <updated>2015-05-27T00:06:47.000Z</updated>
+  <updated>2015-05-28T00:03:59.000Z</updated>
   <id>http://blog.isec.me/</id>
   
   <author>
@@ -15,11 +15,59 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[CentOS 6.5 源码安装PostgreSQL]]></title>
+    <link href="http://blog.isec.me/2015/05/27/CentOS-6-5-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85PostgreSQL/"/>
+    <id>http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/</id>
+    <published>2015-05-28T00:02:40.000Z</published>
+    <updated>2015-05-28T00:03:59.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="安装依赖：">安装依赖：</h3><pre><code>yum install <span class="keyword">readline</span> <span class="keyword">readline</span>-devel make zlib zlib-devel 
+</code></pre><h3 id="下载源码：">下载源码：</h3><pre><code>wget <span class="string">https:</span><span class="comment">//ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz</span>
+tar -zxf postgresql-<span class="number">9.3</span>.2.tar.gz
+cd postgresql-<span class="number">9.3</span>.2
+.<span class="regexp">/configure --prefix=/</span>usr<span class="regexp">/local/</span>pgsql  --with-openssl 
+gmake
+gmake install
+</code></pre><h3 id="添加postgres用户，PostgreSQL的默认超级管理员">添加postgres用户，PostgreSQL的默认超级管理员</h3><pre><code>groupadd postgres    
+adduser -g postgres postgres
+mkdir <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
+chown <span class="string">postgres:</span>postgres <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
+</code></pre><h3 id="测试">测试</h3><pre><code>su - postgres
+<span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/psql -V</span>
+</code></pre><h3 id="初始数据库的存储区间">初始数据库的存储区间</h3><pre><code><span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/initdb -D /u</span>sr<span class="regexp">/local/</span>pgsql<span class="regexp">/data --locale=en_US.UTF8 -U postgres</span>
+</code></pre><h3 id="指定数据目录启动数据库服务器(输出重定向到logfile，并且运行在后台，也可以用pg_ctl来启动)">指定数据目录启动数据库服务器(输出重定向到logfile，并且运行在后台，也可以用pg_ctl来启动)</h3><pre><code>cp contrib<span class="regexp">/start-scripts/</span>linux <span class="regexp">/etc/</span>init.d/postgresql
+chmod a+x <span class="regexp">/etc/</span>init.d/postgresql
+<span class="regexp">/etc/</span>init.d/postgresql start
+</code></pre><h3 id="连接进数据库">连接进数据库</h3><pre><code>/usr/<span class="keyword">local</span>/pgsql/bin/createdb <span class="keyword">test</span>
+/usr/<span class="keyword">local</span>/pgsql/bin/psql -<span class="keyword">U</span> postgres <span class="keyword">test</span>
+</code></pre><h3 id="安装完成后，最好配置一下动态连接库的搜索路径和环境变量，即在~-/bash_profile添加如下内容：">安装完成后，最好配置一下动态连接库的搜索路径和环境变量，即在~./bash_profile添加如下内容：</h3><pre><code>PGHOME=/usr/<span class="built_in">local</span>/pgsql
+PGDATA=<span class="variable">$PGHOME</span>/data
+PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$PGHOME</span>/bin
+<span class="built_in">export</span> PGHOME
+<span class="built_in">export</span> PGDATA
+<span class="built_in">export</span> PATH
+----------------------------
+LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/pgsql/lib
+<span class="built_in">export</span> LD_LIBRARY_PATH 
+PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$PATH</span>
+<span class="built_in">export</span> PATH
+</code></pre><p>PostgreSQL9.3安装完成。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="安装依赖：">安装依赖：</h3><pre><code>yum install <span class="keyword">readline</span> <span class="keyword">readline</span>-devel make zlib ]]>
+    </summary>
+    
+      <category term="PostgreSQL" scheme="http://blog.isec.me/tags/PostgreSQL/"/>
+    
+      <category term="CentOS" scheme="http://blog.isec.me/categories/CentOS/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Hexo静态博客使用指南]]></title>
     <link href="http://blog.isec.me/2015/05/24/Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
     <id>http://blog.isec.me/2015/05/24/Hexo静态博客使用指南/</id>
     <published>2015-05-24T23:41:36.000Z</published>
-    <updated>2015-05-27T00:06:47.000Z</updated>
+    <updated>2015-05-28T00:01:32.000Z</updated>
     <content type="html"><![CDATA[<p>安装Hexo<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install npm -<span class="literal">y</span></span><br><span class="line">npm config <span class="keyword">set</span> registry http:<span class="comment">//registry.npm.taobao.org/</span></span><br><span class="line">npm install hexo-<span class="keyword">cli</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">hexo</span> init <span class="keyword">blog</span><br><span class="line"></span><span class="label">cd</span> <span class="keyword">blog</span></span><br></pre></td></tr></table></figure>
 <p>Hexo常用插件安装与配置</p>
@@ -30,9 +78,9 @@
     <![CDATA[<p>安装Hexo<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><b]]>
     </summary>
     
-      <category term="Hexo" scheme="http://blog.isec.me/tags/Hexo/"/>
+      <category term="Github" scheme="http://blog.isec.me/tags/Github/"/>
     
-      <category term="前端" scheme="http://blog.isec.me/tags/%E5%89%8D%E7%AB%AF/"/>
+      <category term="Hexo" scheme="http://blog.isec.me/tags/Hexo/"/>
     
       <category term="Hexo" scheme="http://blog.isec.me/categories/Hexo/"/>
     
