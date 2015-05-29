@@ -22,7 +22,7 @@
 
 
 
-  <meta name="keywords" content="PostgreSQL," />
+  <meta name="keywords" content="Postgresql," />
 
 
 
@@ -48,7 +48,7 @@
 
 
 
-  <title> CentOS 6.5 源码安装PostgreSQL // iSec </title>
+  <title> Postgresql常用命令 // iSec </title>
 </head>
 
 <body>
@@ -136,7 +136,7 @@
           
           
             
-              CentOS 6.5 源码安装PostgreSQL
+              Postgresql常用命令
             
           
         </h1>
@@ -144,7 +144,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2015-05-27
+          發表於 2015-05-28
         </span>
 
         
@@ -164,8 +164,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/27/CentOS-6-5-源码安装PostgreSQL/"></span>
+            <a href="/2015/05/28/Postgresql常用命令/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/28/Postgresql常用命令/"></span>
             </a>
           </span>
           
@@ -179,39 +179,28 @@
       
 
       
-        <h3 id="安装依赖：">安装依赖：</h3><pre><code>yum install <span class="keyword">readline</span> <span class="keyword">readline</span>-devel make zlib zlib-devel 
-</code></pre><h3 id="下载源码：">下载源码：</h3><pre><code>wget <span class="string">https:</span><span class="comment">//ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz</span>
-tar -zxf postgresql-<span class="number">9.3</span>.2.tar.gz
-cd postgresql-<span class="number">9.3</span>.2
-.<span class="regexp">/configure --prefix=/</span>usr<span class="regexp">/local/</span>pgsql  --with-openssl 
-gmake
-gmake install
-</code></pre><h3 id="添加postgres用户，PostgreSQL的默认超级管理员">添加postgres用户，PostgreSQL的默认超级管理员</h3><pre><code>groupadd postgres    
-adduser -g postgres postgres
-mkdir <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
-chown <span class="string">postgres:</span>postgres <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
-</code></pre><h3 id="测试">测试</h3><pre><code>su - postgres
-<span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/psql -V</span>
-</code></pre><h3 id="初始数据库的存储区间">初始数据库的存储区间</h3><pre><code><span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/initdb -D /u</span>sr<span class="regexp">/local/</span>pgsql<span class="regexp">/data --locale=en_US.UTF8 -U postgres</span>
-</code></pre><h3 id="启动数据库服务器">启动数据库服务器</h3><pre><code>cp contrib<span class="regexp">/start-scripts/</span>linux <span class="regexp">/etc/</span>init.d/postgresql
-chmod a+x <span class="regexp">/etc/</span>init.d/postgresql
-<span class="regexp">/etc/</span>init.d/postgresql start
-</code></pre><h3 id="连接进数据库">连接进数据库</h3><pre><code>/usr/<span class="keyword">local</span>/pgsql/bin/createdb <span class="keyword">test</span>
-/usr/<span class="keyword">local</span>/pgsql/bin/psql -<span class="keyword">U</span> postgres <span class="keyword">test</span>
-</code></pre><h3 id="配置一下动态连接库的搜索路径和环境变量">配置一下动态连接库的搜索路径和环境变量</h3><p>在~./bash_profile添加如下内容：</p>
-<pre><code>PGHOME=/usr/<span class="built_in">local</span>/pgsql
-PGDATA=<span class="variable">$PGHOME</span>/data
-PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$PGHOME</span>/bin
-<span class="built_in">export</span> PGHOME
-<span class="built_in">export</span> PGDATA
-<span class="built_in">export</span> PATH
-----------------------------
-LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/pgsql/lib
-<span class="built_in">export</span> LD_LIBRARY_PATH 
-PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$PATH</span>
-<span class="built_in">export</span> PATH
-</code></pre><p>PostgreSQL9.3安装完成。</p>
-
+        <p>连接数据库, 默认的用户和数据库是postgres</p>
+<pre><code>psql -<span class="keyword">U</span> user -<span class="keyword">d</span> dbname
+</code></pre><p>切换数据库,相当于mysql的use dbname</p>
+<pre><code><span class="string">\c</span> dbname
+</code></pre><p>列举数据库，相当于mysql的show databases</p>
+<pre><code><span class="string">\l</span>
+</code></pre><p>列举表，相当于mysql的show tables</p>
+<pre><code><span class="string">\dt</span>
+</code></pre><p>查看表结构，相当于desc tblname,show columns from tbname</p>
+<pre><code><span class="string">\d</span> tblname
+</code></pre><p>查看索引</p>
+<pre><code><span class="string">\di</span> 
+</code></pre><p>创建数据库：</p>
+<pre><code><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> dbname;</span>
+<span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> dbname OWNER rolename;</span>
+</code></pre><p>删除数据库： </p>
+<pre><code><span class="operator"><span class="keyword">drop</span> <span class="keyword">database</span> dbname;</span>  
+</code></pre><p>重命名一个表： </p>
+<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> oldtablename <span class="keyword">rename</span> <span class="keyword">to</span> newtablename;</span> 
+</code></pre><p>删除一个表： </p>
+<pre><code><span class="operator"><span class="keyword">drop</span> <span class="keyword">table</span> tablename;</span> 
+</code></pre>
       
     </div>
 
@@ -219,7 +208,7 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
       
         <div class="post-tags">
           
-            <a href="/tags/PostgreSQL/"> #PostgreSQL </a>
+            <a href="/tags/Postgresql/"> #Postgresql </a>
           
         </div>
       
@@ -228,13 +217,11 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/28/Postgresql常用命令/">Postgresql常用命令</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/24/Hexo静态博客使用指南/">Hexo静态博客使用指南</a>
+              <a href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/">CentOS 6.5 源码安装PostgreSQL</a>
             
           </div>
         </div>
@@ -250,8 +237,8 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/05/27/CentOS-6-5-源码安装PostgreSQL/"
-               data-title="CentOS 6.5 源码安装PostgreSQL" data-url="http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/">
+          <div class="ds-thread" data-thread-key="2015/05/28/Postgresql常用命令/"
+               data-title="Postgresql常用命令" data-url="http://blog.isec.me/2015/05/28/Postgresql常用命令/">
           </div>
         
       </div>
@@ -353,7 +340,7 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖："><span class="nav-number">1.</span> <span class="nav-text">安装依赖：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载源码："><span class="nav-number">2.</span> <span class="nav-text">下载源码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加postgres用户，PostgreSQL的默认超级管理员"><span class="nav-number">3.</span> <span class="nav-text">添加postgres用户，PostgreSQL的默认超级管理员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始数据库的存储区间"><span class="nav-number">5.</span> <span class="nav-text">初始数据库的存储区间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动数据库服务器"><span class="nav-number">6.</span> <span class="nav-text">启动数据库服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接进数据库"><span class="nav-number">7.</span> <span class="nav-text">连接进数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置一下动态连接库的搜索路径和环境变量"><span class="nav-number">8.</span> <span class="nav-text">配置一下动态连接库的搜索路径和环境变量</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

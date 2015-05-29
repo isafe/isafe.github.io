@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.isec.me/"/>
-  <updated>2015-05-28T00:06:59.000Z</updated>
+  <updated>2015-05-29T00:12:04.000Z</updated>
   <id>http://blog.isec.me/</id>
   
   <author>
@@ -15,11 +15,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Postgresql常用命令]]></title>
+    <link href="http://blog.isec.me/2015/05/28/Postgresql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://blog.isec.me/2015/05/28/Postgresql常用命令/</id>
+    <published>2015-05-29T00:11:06.000Z</published>
+    <updated>2015-05-29T00:12:04.000Z</updated>
+    <content type="html"><![CDATA[<p>连接数据库, 默认的用户和数据库是postgres</p>
+<pre><code>psql -<span class="keyword">U</span> user -<span class="keyword">d</span> dbname
+</code></pre><p>切换数据库,相当于mysql的use dbname</p>
+<pre><code><span class="string">\c</span> dbname
+</code></pre><p>列举数据库，相当于mysql的show databases</p>
+<pre><code><span class="string">\l</span>
+</code></pre><p>列举表，相当于mysql的show tables</p>
+<pre><code><span class="string">\dt</span>
+</code></pre><p>查看表结构，相当于desc tblname,show columns from tbname</p>
+<pre><code><span class="string">\d</span> tblname
+</code></pre><p>查看索引</p>
+<pre><code><span class="string">\di</span> 
+</code></pre><p>创建数据库：</p>
+<pre><code><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> dbname;</span>
+<span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> dbname OWNER rolename;</span>
+</code></pre><p>删除数据库： </p>
+<pre><code><span class="operator"><span class="keyword">drop</span> <span class="keyword">database</span> dbname;</span>  
+</code></pre><p>重命名一个表： </p>
+<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> oldtablename <span class="keyword">rename</span> <span class="keyword">to</span> newtablename;</span> 
+</code></pre><p>删除一个表： </p>
+<pre><code><span class="operator"><span class="keyword">drop</span> <span class="keyword">table</span> tablename;</span> 
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>连接数据库, 默认的用户和数据库是postgres</p>
+<pre><code>psql -<span class="keyword">U</span> user -<span class="keyword">d</span> dbname
+</code></pre><p]]>
+    </summary>
+    
+      <category term="Postgresql" scheme="http://blog.isec.me/tags/Postgresql/"/>
+    
+      <category term="运维" scheme="http://blog.isec.me/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[CentOS 6.5 源码安装PostgreSQL]]></title>
     <link href="http://blog.isec.me/2015/05/27/CentOS-6-5-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85PostgreSQL/"/>
     <id>http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/</id>
     <published>2015-05-28T00:02:40.000Z</published>
-    <updated>2015-05-28T00:06:59.000Z</updated>
+    <updated>2015-05-29T00:12:22.000Z</updated>
     <content type="html"><![CDATA[<h3 id="安装依赖：">安装依赖：</h3><pre><code>yum install <span class="keyword">readline</span> <span class="keyword">readline</span>-devel make zlib zlib-devel 
 </code></pre><h3 id="下载源码：">下载源码：</h3><pre><code>wget <span class="string">https:</span><span class="comment">//ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz</span>
 tar -zxf postgresql-<span class="number">9.3</span>.2.tar.gz
@@ -59,7 +99,7 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
     
       <category term="PostgreSQL" scheme="http://blog.isec.me/tags/PostgreSQL/"/>
     
-      <category term="CentOS" scheme="http://blog.isec.me/categories/CentOS/"/>
+      <category term="运维" scheme="http://blog.isec.me/categories/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
