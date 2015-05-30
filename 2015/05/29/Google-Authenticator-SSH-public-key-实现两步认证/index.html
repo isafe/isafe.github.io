@@ -22,7 +22,7 @@
 
 
 
-  <meta name="keywords" content="iSec, Python, 安全" />
+  <meta name="keywords" content="Linux安全,安全," />
 
 
 
@@ -50,14 +50,12 @@
 
 
 
-  <title> iSec </title>
+  <title> Google Authenticator + SSH public key 实现两步认证 // iSec </title>
 </head>
 
 <body>
 <!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <div id="header" class="header">
@@ -127,9 +125,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
+
   <div id="posts" class="posts-expand">
     
-      
 
   <div class="post post-type-normal ">
     <div class="post-header">
@@ -140,9 +138,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/">
-                Google Authenticator + SSH public key 实现两步认证
-              </a>
+              Google Authenticator + SSH public key 实现两步认证
             
           
         </h1>
@@ -185,8 +181,7 @@
       
 
       
-        
-          <p>OpenSSH 版本6.2以上才支持AuthenticationMethods</p>
+        <p>OpenSSH 版本6.2以上才支持AuthenticationMethods</p>
 <p>1,安装依赖：<br>Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:</p>
 <pre><code><span class="comment">yum</span> <span class="comment">install</span> <span class="comment">git</span> <span class="comment">pam</span><span class="literal">-</span><span class="comment">devel</span> <span class="comment">make</span> <span class="comment">gcc</span><span class="literal">-</span><span class="comment">c</span><span class="literal">+</span><span class="literal">+</span> <span class="comment">wget</span> <span class="literal">-</span><span class="comment">y</span>
 </code></pre><p>Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:</p>
@@ -248,7 +243,6 @@ Verification <span class="attribute">code</span>: <span class="number">6</span>�
 Last <span class="attribute">login</span>: Thu Aug <span class="number">14</span> <span class="number">15</span>:<span class="number">20</span>:<span class="number">16</span> <span class="number">2015</span> <span class="keyword">from</span> <span class="number">127.0</span>.<span class="number">0.1</span>
 [root<span class="property">@localhost</span> ~]<span class="comment"># </span>
 </code></pre>
-        
       
     </div>
 
@@ -264,325 +258,37 @@ Last <span class="attribute">login</span>: Thu Aug <span class="number">14</span
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
             
-              <a class="post-title-link" href="/2015/05/28/Postgresql常用命令/">
-                Postgresql常用命令
-              </a>
+          </div>
+
+          <div class="post-nav-next post-nav-item">
             
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-05-28
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分類於
+              <a href="/2015/05/28/Postgresql常用命令/">Postgresql常用命令</a>
             
-              <a href="/categories/运维/">运维</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/28/Postgresql常用命令/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/28/Postgresql常用命令/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>连接数据库, 默认的用户和数据库是postgres</p>
-<pre><code>psql -<span class="keyword">U</span> user -<span class="keyword">d</span> dbname
-</code></pre><p>切换数据库,相当于mysql的use dbname</p>
-<pre><code><span class="string">\c</span> dbname
-</code></pre><p>列举数据库，相当于mysql的show databases</p>
-<pre><code><span class="string">\l</span>
-</code></pre><p>列举表，相当于mysql的show tables</p>
-<pre><code><span class="string">\dt</span>
-</code></pre><p>查看表结构，相当于desc tblname,show columns from tbname</p>
-<pre><code><span class="string">\d</span> tblname
-</code></pre><p>查看索引</p>
-<pre><code><span class="string">\di</span> 
-</code></pre><p>创建数据库：</p>
-<pre><code><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> dbname;</span>
-<span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> dbname OWNER rolename;</span>
-</code></pre><p>删除数据库： </p>
-<pre><code><span class="operator"><span class="keyword">drop</span> <span class="keyword">database</span> dbname;</span>  
-</code></pre><p>重命名一个表： </p>
-<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> oldtablename <span class="keyword">rename</span> <span class="keyword">to</span> newtablename;</span> 
-</code></pre><p>删除一个表： </p>
-<pre><code><span class="operator"><span class="keyword">drop</span> <span class="keyword">table</span> tablename;</span> 
-</code></pre>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Postgresql/"> #Postgresql </a>
-          
+          </div>
         </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </div>
   </div>
 
 
+
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/">
-                CentOS 6.5 源码安装PostgreSQL
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-05-27
-        </span>
-
+      <div class="comments" id="comments">
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分類於
-            
-              <a href="/categories/运维/">运维</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/27/CentOS-6-5-源码安装PostgreSQL/"></span>
-            </a>
-          </span>
-          
+          <div class="ds-thread" data-thread-key="2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/"
+               data-title="Google Authenticator + SSH public key 实现两步认证" data-url="http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/">
+          </div>
         
       </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="安装依赖：">安装依赖：</h3><pre><code>yum install <span class="keyword">readline</span> <span class="keyword">readline</span>-devel make zlib zlib-devel 
-</code></pre><h3 id="下载源码：">下载源码：</h3><pre><code>wget <span class="string">https:</span><span class="comment">//ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz</span>
-tar -zxf postgresql-<span class="number">9.3</span>.2.tar.gz
-cd postgresql-<span class="number">9.3</span>.2
-.<span class="regexp">/configure --prefix=/</span>usr<span class="regexp">/local/</span>pgsql  --with-openssl 
-gmake
-gmake install
-</code></pre><h3 id="添加postgres用户，PostgreSQL的默认超级管理员">添加postgres用户，PostgreSQL的默认超级管理员</h3><pre><code>groupadd postgres    
-adduser -g postgres postgres
-mkdir <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
-chown <span class="string">postgres:</span>postgres <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
-</code></pre><h3 id="测试">测试</h3><pre><code>su - postgres
-<span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/psql -V</span>
-</code></pre><h3 id="初始数据库的存储区间">初始数据库的存储区间</h3><pre><code><span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/initdb -D /u</span>sr<span class="regexp">/local/</span>pgsql<span class="regexp">/data --locale=en_US.UTF8 -U postgres</span>
-</code></pre><h3 id="启动数据库服务器">启动数据库服务器</h3><pre><code>cp contrib<span class="regexp">/start-scripts/</span>linux <span class="regexp">/etc/</span>init.d/postgresql
-chmod a+x <span class="regexp">/etc/</span>init.d/postgresql
-<span class="regexp">/etc/</span>init.d/postgresql start
-</code></pre><h3 id="连接进数据库">连接进数据库</h3><pre><code>/usr/<span class="keyword">local</span>/pgsql/bin/createdb <span class="keyword">test</span>
-/usr/<span class="keyword">local</span>/pgsql/bin/psql -<span class="keyword">U</span> postgres <span class="keyword">test</span>
-</code></pre><h3 id="配置一下动态连接库的搜索路径和环境变量">配置一下动态连接库的搜索路径和环境变量</h3><p>在~./bash_profile添加如下内容：</p>
-<pre><code>PGHOME=/usr/<span class="built_in">local</span>/pgsql
-PGDATA=<span class="variable">$PGHOME</span>/data
-PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$PGHOME</span>/bin
-<span class="built_in">export</span> PGHOME
-<span class="built_in">export</span> PGDATA
-<span class="built_in">export</span> PATH
-----------------------------
-LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/pgsql/lib
-<span class="built_in">export</span> LD_LIBRARY_PATH 
-PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$PATH</span>
-<span class="built_in">export</span> PATH
-</code></pre><p>PostgreSQL9.3安装完成。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PostgreSQL/"> #PostgreSQL </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/24/Hexo静态博客使用指南/">
-                Hexo静态博客使用指南
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-05-24
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分類於
-            
-              <a href="/categories/Hexo/">Hexo</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/24/Hexo静态博客使用指南/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/Hexo静态博客使用指南/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>安装Hexo<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install npm -<span class="literal">y</span></span><br><span class="line">npm config <span class="keyword">set</span> registry http:<span class="comment">//registry.npm.taobao.org/</span></span><br><span class="line">npm install hexo-<span class="keyword">cli</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">hexo</span> init <span class="keyword">blog</span><br><span class="line"></span><span class="label">cd</span> <span class="keyword">blog</span></span><br></pre></td></tr></table></figure>
-<p>Hexo常用插件安装与配置</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">index</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-archive <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-category <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-tag <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-<span class="keyword">server</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line"><span class="keyword">cd</span> themes</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/moretwo/hexo-theme.git</span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Github/"> #Github </a>
-          
-            <a href="/tags/Hexo/"> #Hexo </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
     
   </div>
 
-  
 
         </div>
 
@@ -603,6 +309,15 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
   <div id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
       
 
       <div class="site-overview">
@@ -664,6 +379,17 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
       </div>
 
       
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
 
     </div>
   </div>
@@ -724,6 +450,145 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
 
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
 
   <script type="text/javascript">
     $(document).ready(function () {
