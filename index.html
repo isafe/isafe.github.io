@@ -1,785 +1,462 @@
-<!doctype html>
-<html class="theme-next use-motion theme-next-mist">
+<!DOCTYPE html>
+<html>
 <head>
+  <meta charset="utf-8">
   
-
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
-
-
-    <meta name="description" content="i安全 | 运维安全 | Python | Linux 安全 | 数据分析" />
-
-
-
-  <meta name="keywords" content="iSec, Python, 安全, 运维安全, 数据分析" />
-
-
-
-  <link rel="alternate" href="/atom.xml" title="iSec" type="application/atom+xml" />
-
-
-
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    scheme: 'Mist',
-    analytics: {
-      baidu: '31b35b7d148515857ea633f603e51946',
-      google: ''
-    },
-    sidebar: 'post'
-  };
-</script>
-
-
-  <script type="text/javascript" src="/js/analytics_baidu-analytics.js"></script>
-
-
-
-  <title> iSec </title>
+  
+  
+  <title>iSecLab | 不会机器学习的程序员不是好运维</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="undefined">
+  <meta name="description" content="iSecLab | 运维安全 | Python | Linux 安全 | 数据分析">
+<meta property="og:type" content="website">
+<meta property="og:title" content="iSecLab">
+<meta property="og:url" content="http://blog.isec.me/index.html">
+<meta property="og:site_name" content="iSecLab">
+<meta property="og:description" content="iSecLab | 运维安全 | Python | Linux 安全 | 数据分析">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iSecLab">
+<meta name="twitter:description" content="iSecLab | 运维安全 | Python | Linux 安全 | 数据分析">
+  
+    <link rel="alternative" href="/atom.xml" title="iSecLab" type="application/atom+xml">
+  
+  <meta name="summary" content="iSecLab | 运维安全 | Python | Linux 安全 | 数据分析">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
 </head>
 
 <body>
-<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
-  <div class="container one-column 
-   page-home 
-">
-    <div class="headband"></div>
+  <div id="loading" class="active"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
-      <span class="site-title">iSec</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+  <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="//placekitten.com/200/200?image=13"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏格兰雨季</h5>
+          <a href="mailto:linuxsec@qq.com" title="linuxsec@qq.com" class="mail">linuxsec@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives/"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/isafe" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com/" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
 
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>iSecLab &copy; 2014 - 2016</p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
 
-  <ul id="menu" class="menu">
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">iSecLab</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
+
+    <div class="container">
+        <h1 class="title">iSecLab</h1>
+        <h5 class="subtitle">
+             
+                不会机器学习的程序员不是好运维
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+<div class="container body-wrap">
+
+    <ul class="post-list">
+    
+        <li class="post-list-item">
+            <article id="post-Google-Authenticator-SSH-public-key-实现两步认证"
+  class="article-card article-type-post" itemprop="blogPost">
      
-    
-      
-      <li class="menu-item menu-item-home">
-        <a href="/">
-          <i class="menu-item-icon icon-home"></i> <br />
-          首页
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-categories">
-        <a href="/categories">
-          <i class="menu-item-icon icon-categories"></i> <br />
-          分类
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-about">
-        <a href="/about">
-          <i class="menu-item-icon icon-about"></i> <br />
-          关于
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-archives">
-        <a href="/archives">
-          <i class="menu-item-icon icon-archives"></i> <br />
-          归档
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-tags">
-        <a href="/tags">
-          <i class="menu-item-icon icon-tags"></i> <br />
-          标签
-        </a>
-      </li>
-    
-  </ul>
+    <div class="post-meta">
+        <time datetime="2015-05-29T11:58:19.000Z" itemprop="datePublished" class="post-time">
+  2015-05-29
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux安全/">Linux安全</a></li></ul>
 
 
-      </div>
+
     </div>
-
-    <div id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content">
-          
-  <div id="posts" class="posts-expand">
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/">
-                Google Authenticator + SSH public key 实现两步认证
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-05-29
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/Linux安全/">Linux安全</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>OpenSSH 版本6.2以上才支持AuthenticationMethods</p>
-<p>1,安装依赖：<br>Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:</p>
-<pre><code><span class="comment">yum</span> <span class="comment">install</span> <span class="comment">git</span> <span class="comment">pam</span><span class="literal">-</span><span class="comment">devel</span> <span class="comment">make</span> <span class="comment">gcc</span><span class="literal">-</span><span class="comment">c</span><span class="literal">+</span><span class="literal">+</span> <span class="comment">wget</span> <span class="literal">-</span><span class="comment">y</span>
-</code></pre><p>Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:</p>
-<pre><code>apt-<span class="built_in">get</span> install git libpam0g-<span class="built_in">dev</span> make gcc-c++ wget -y
-</code></pre><p>2,谷歌身份验证器模块：</p>
-<pre><code>git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/google/google-authenticator.git
-<span class="keyword">cd</span> google-authenticator/libpam
-./bootstrap.<span class="keyword">sh</span>
-<span class="keyword">make</span> &amp;&amp; <span class="keyword">make</span> install
-</code></pre><p>3,运行google-authenticator开始生成密钥信息</p>
-<pre><code>google-authenticator 
-
-<span class="operator"><span class="keyword">Do</span> you want authentication tokens <span class="keyword">to</span> be <span class="keyword">time</span>-based (y/n) y
-二维码地址
-https://www.google.com/chart?chs=<span class="number">200</span>x200&amp;chld=M|<span class="number">0</span>&amp;cht=qr&amp;chl=otpauth://totp/root@localhost%<span class="number">3</span>Fsecret%XXXXXXXXXXXXXX
-Your new secret <span class="keyword">key</span> <span class="keyword">is</span>: XXXXXXXXXXXX
-Your verification code <span class="keyword">is</span> <span class="number">000000</span>
-紧急码,只能使用一次
-Your emergency scratch codes <span class="keyword">are</span>:
-  <span class="number">80801116</span>
-  <span class="number">43011118</span>
-  <span class="number">34981118</span>
-  <span class="number">88321117</span>
-  <span class="number">93711113</span>
-
-<span class="keyword">Do</span> you want me <span class="keyword">to</span> <span class="keyword">update</span> your <span class="string">"/root/.google_authenticator"</span> file (y/n) y
-
-<span class="keyword">Do</span> you want <span class="keyword">to</span> disallow multiple uses <span class="keyword">of</span> the same authentication
-token? This restricts you <span class="keyword">to</span> one login about every <span class="number">30</span>s, but it increases
-your chances <span class="keyword">to</span> notice <span class="keyword">or</span> even prevent man-<span class="keyword">in</span>-the-middle attacks (y/n) y
-#每<span class="number">30</span>秒生成一个token
-<span class="keyword">By</span> <span class="keyword">default</span>, tokens <span class="keyword">are</span> good <span class="keyword">for</span> <span class="number">30</span> seconds <span class="keyword">and</span> <span class="keyword">in</span> <span class="keyword">order</span> <span class="keyword">to</span> compensate <span class="keyword">for</span>
-possible <span class="keyword">time</span>-skew <span class="keyword">between</span> the client <span class="keyword">and</span> the <span class="keyword">server</span>, we allow an extra
-token <span class="keyword">before</span> <span class="keyword">and</span> <span class="keyword">after</span> the <span class="keyword">current</span> <span class="keyword">time</span>. <span class="keyword">If</span> you experience problems <span class="keyword">with</span> poor
-<span class="keyword">time</span> synchronization, you can increase the window <span class="keyword">from</span> its <span class="keyword">default</span>
-<span class="keyword">size</span> <span class="keyword">of</span> <span class="number">1</span>:<span class="number">30</span><span class="keyword">min</span> <span class="keyword">to</span> about <span class="number">4</span><span class="keyword">min</span>. <span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">do</span> so (y/n) y
-
-<span class="keyword">If</span> the computer that you <span class="keyword">are</span> logging <span class="keyword">into</span> isn<span class="string">'t hardened against brute-force
-login attempts, you can enable rate-limiting for the authentication module.
-By default, this limits attackers to no more than 3 login attempts every 30s.
-Do you want to enable rate-limiting (y/n) y</span></span>
-</code></pre><p>3,配置SSH使用谷歌身份验证器模块</p>
-<p>编辑/etc/pam.d/sshd 添加如下：</p>
-<pre><code>auth sufficient pam_google_authenticator.so
-注释：
-auth       <span class="literal">include</span>      <span class="literal">password</span>-auth
-</code></pre><p>编辑/etc/ssh/sshd_config,修改</p>
-<pre><code><span class="title">PubkeyAuthentication</span> <span class="built_in">yes</span>
-ChallengeResponseAuthentication <span class="built_in">yes</span>
-AuthenticationMethods publickey,keyboard-interactive
-PasswordAuthentication <span class="built_in">no</span>
-UsePAM <span class="built_in">yes</span>
-</code></pre><p>重启SSH服务:</p>
-<pre><code><span class="keyword">service</span> sshd <span class="literal">restart</span>
-</code></pre><p>手机端安装Google 身份验证器:<br>Andorid版<br><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" rel="external">https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2</a><br>iOS版<br><a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605" target="_blank" rel="external">https://itunes.apple.com/cn/app/google-authenticator/id388497605</a><br>手机端打开google 身份验证器,扫二维码或者输入secret key</p>
-<pre><code>[root<span class="property">@localhost</span> ~]<span class="comment"># ssh 127.0.0.1</span>
-Authenticated <span class="keyword">with</span> partial success.
-Verification <span class="attribute">code</span>: <span class="number">6</span>位动态码
-Last <span class="attribute">login</span>: Thu Aug <span class="number">14</span> <span class="number">15</span>:<span class="number">20</span>:<span class="number">16</span> <span class="number">2015</span> <span class="keyword">from</span> <span class="number">127.0</span>.<span class="number">0.1</span>
-[root<span class="property">@localhost</span> ~]<span class="comment"># </span>
-</code></pre>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Linux安全/"> #Linux安全 </a>
-          
-            <a href="/tags/安全/"> #安全 </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
 
     
-      
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/28/Postgresql常用命令/">
-                Postgresql常用命令
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-05-28
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/运维/">运维</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/28/Postgresql常用命令/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/28/Postgresql常用命令/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>连接数据库, 默认的用户和数据库是postgres</p>
-<pre><code>psql -<span class="keyword">U</span> user -<span class="keyword">d</span> dbname
-</code></pre><p>切换数据库,相当于mysql的use dbname</p>
-<pre><code><span class="string">\c</span> dbname
-</code></pre><p>列举数据库，相当于mysql的show databases</p>
-<pre><code><span class="string">\l</span>
-</code></pre><p>列举表，相当于mysql的show tables</p>
-<pre><code><span class="string">\dt</span>
-</code></pre><p>查看表结构，相当于desc tblname,show columns from tbname</p>
-<pre><code><span class="string">\d</span> tblname
-</code></pre><p>查看索引</p>
-<pre><code><span class="string">\di</span> 
-</code></pre><p>创建数据库：</p>
-<pre><code><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> dbname;</span>
-<span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> dbname OWNER rolename;</span>
-</code></pre><p>删除数据库： </p>
-<pre><code><span class="operator"><span class="keyword">drop</span> <span class="keyword">database</span> dbname;</span>  
-</code></pre><p>重命名一个表： </p>
-<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> oldtablename <span class="keyword">rename</span> <span class="keyword">to</span> newtablename;</span> 
-</code></pre><p>删除一个表： </p>
-<pre><code><span class="operator"><span class="keyword">drop</span> <span class="keyword">table</span> tablename;</span> 
-</code></pre>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Postgresql/"> #Postgresql </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/">
-                CentOS 6.5 源码安装PostgreSQL
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-05-27
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/运维/">运维</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/27/CentOS-6-5-源码安装PostgreSQL/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="安装依赖：">安装依赖：</h3><pre><code>yum install <span class="keyword">readline</span> <span class="keyword">readline</span>-devel make zlib zlib-devel 
-</code></pre><h3 id="下载源码：">下载源码：</h3><pre><code>wget <span class="string">https:</span><span class="comment">//ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz</span>
-tar -zxf postgresql-<span class="number">9.3</span>.2.tar.gz
-cd postgresql-<span class="number">9.3</span>.2
-.<span class="regexp">/configure --prefix=/</span>usr<span class="regexp">/local/</span>pgsql  --with-openssl 
-gmake
-gmake install
-</code></pre><h3 id="添加postgres用户，PostgreSQL的默认超级管理员">添加postgres用户，PostgreSQL的默认超级管理员</h3><pre><code>groupadd postgres    
-adduser -g postgres postgres
-mkdir <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
-chown <span class="string">postgres:</span>postgres <span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>data
-</code></pre><h3 id="测试">测试</h3><pre><code>su - postgres
-<span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/psql -V</span>
-</code></pre><h3 id="初始数据库的存储区间">初始数据库的存储区间</h3><pre><code><span class="regexp">/usr/</span>local<span class="regexp">/pgsql/</span>bin<span class="regexp">/initdb -D /u</span>sr<span class="regexp">/local/</span>pgsql<span class="regexp">/data --locale=en_US.UTF8 -U postgres</span>
-</code></pre><h3 id="启动数据库服务器">启动数据库服务器</h3><pre><code>cp contrib<span class="regexp">/start-scripts/</span>linux <span class="regexp">/etc/</span>init.d/postgresql
-chmod a+x <span class="regexp">/etc/</span>init.d/postgresql
-<span class="regexp">/etc/</span>init.d/postgresql start
-</code></pre><h3 id="连接进数据库">连接进数据库</h3><pre><code>/usr/<span class="keyword">local</span>/pgsql/bin/createdb <span class="keyword">test</span>
-/usr/<span class="keyword">local</span>/pgsql/bin/psql -<span class="keyword">U</span> postgres <span class="keyword">test</span>
-</code></pre><h3 id="配置一下动态连接库的搜索路径和环境变量">配置一下动态连接库的搜索路径和环境变量</h3><p>在~./bash_profile添加如下内容：</p>
-<pre><code>PGHOME=/usr/<span class="built_in">local</span>/pgsql
-PGDATA=<span class="variable">$PGHOME</span>/data
-PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$PGHOME</span>/bin
-<span class="built_in">export</span> PGHOME
-<span class="built_in">export</span> PGDATA
-<span class="built_in">export</span> PATH
-----------------------------
-LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/pgsql/lib
-<span class="built_in">export</span> LD_LIBRARY_PATH 
-PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$PATH</span>
-<span class="built_in">export</span> PATH
-</code></pre><p>PostgreSQL9.3安装完成。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PostgreSQL/"> #PostgreSQL </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/24/Hexo静态博客使用指南/">
-                Hexo静态博客使用指南
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-05-24
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/Hexo/">Hexo</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/24/Hexo静态博客使用指南/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/Hexo静态博客使用指南/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>安装Hexo<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="operator"><span class="keyword">install</span> npm -y</span><br><span class="line">npm config <span class="keyword">set</span> registry <span class="keyword">http</span>://registry.npm.taobao.org/</span><br><span class="line">npm <span class="keyword">install</span> hexo-cli -<span class="keyword">g</span></span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">hexo</span> init <span class="keyword">blog</span><br><span class="line"></span><span class="label">cd</span> <span class="keyword">blog</span></span><br></pre></td></tr></table></figure>
-<p>Hexo常用插件安装与配置</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">index</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">archive</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">category</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-tag <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-<span class="keyword">server</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line"><span class="keyword">cd</span> themes</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/moretwo/hexo-theme.git</span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Github/"> #Github </a>
-          
-            <a href="/tags/Hexo/"> #Hexo </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-  </div>
 
   
-
-        </div>
-
-        
-      </div>
-
-
-      
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/">Google Authenticator + SSH public key 实现两步认证</a>
+    </h3>
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+        OpenSSH 版本6.2以上才支持AuthenticationMethods
+1,安装依赖：Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:
+yum install git pam-devel make gcc-c++ wget -y
+Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:
+apt-get inst...
+    
+    
+        <a href="/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
-  </div>
-
-  <div id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="苏格兰雨季" />
-          <p class="site-author-name">苏格兰雨季</p>
-        </div>
-        <p class="site-description motion-element">i安全 | 运维安全 | Python | Linux 安全 | 数据分析</p>
-        <div class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">标签</span>
-              </a>
-          </div>
-
-        </div>
-
+    
+    <div class="post-footer">
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml">
-              <i class="menu-item-icon icon-feed"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-              <a href="https://github.com/isafe" target="_blank">GitHub</a>
-            </span>
-            
-              <span class="links-of-author-item">
-              <a href="http://weibo.com/328559090" target="_blank">Weibo</a>
-            </span>
-            
-          
-        </div>
-
-        
-        
-
-      </div>
-
-      
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux安全/">Linux安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
 
     </div>
-  </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item">
+            <article id="post-Postgresql常用命令"
+  class="article-card article-type-post" itemprop="blogPost">
+     
+    <div class="post-meta">
+        <time datetime="2015-05-28T12:11:06.000Z" itemprop="datePublished" class="post-time">
+  2015-05-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/运维/">运维</a></li></ul>
+
 
 
     </div>
 
-    <div id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
+    
+
+
   
-  &copy; &nbsp;  2012 - 
-  2015
-  <span class="with-love">
-    <i class="icon-heart"></i>
-  </span>
-  <span class="author">苏格兰雨季</span>
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2015/05/28/Postgresql常用命令/">Postgresql常用命令</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+        连接数据库, 默认的用户和数据库是postgres
+psql -U user -d dbname
+切换数据库,相当于mysql的use dbname
+\c dbname
+列举数据库，相当于mysql的show databases
+\l
+列举表，相当于mysql的show tables
+\dt
+查看表结构，相当于desc tblname,show columns from tbname
+\d ...
+    
+    
+        <a href="/2015/05/28/Postgresql常用命令/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Postgresql/">Postgresql</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item">
+            <article id="post-CentOS-6-5-源码安装PostgreSQL"
+  class="article-card article-type-post" itemprop="blogPost">
+     
+    <div class="post-meta">
+        <time datetime="2015-05-27T12:02:40.000Z" itemprop="datePublished" class="post-time">
+  2015-05-27
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/运维/">运维</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/">CentOS 6.5 源码安装PostgreSQL</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+        安装依赖：yum install readline readline-devel make zlib zlib-devel 
+下载源码：wget https://ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz
+tar -zxf postgresql-9.3.2.tar.gz
+cd postgresql-9.3.2
+./...
+    
+    
+        <a href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostgreSQL/">PostgreSQL</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item">
+            <article id="post-Hexo静态博客使用指南"
+  class="article-card article-type-post" itemprop="blogPost">
+     
+    <div class="post-meta">
+        <time datetime="2015-05-24T11:41:36.000Z" itemprop="datePublished" class="post-time">
+  2015-05-24
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Hexo/">Hexo</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2015/05/24/Hexo静态博客使用指南/">Hexo静态博客使用指南</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+        安装Hexo123yum install npm -ynpm config set registry http://registry.npm.taobao.org/npm install hexo-cli -g
+12hexo init blogcd blog
+Hexo常用插件安装与配置
+1234567npm install hexo --savenpm install hexo-genera...
+    
+    
+        <a href="/2015/05/24/Hexo静态博客使用指南/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github-Pages/">Github Pages</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+    </ul>
+
+    
+
 </div>
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-
-      </div>
-    </div>
-
-    <div class="back-to-top"></div>
-  </div>
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js"></script>
-  
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
-
-
-
-
-  
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-    });
-  </script>
-
-  
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "iSecLab",
+pic: "//placekitten.com/200/200?image=13",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://blog.isec.me/" }
 </script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
 
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
 
 
-  
-  
 
-  
-    
-  
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"isec"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
+<script src="/js/search.min.js?v=1.1.10"></script>
 
 
-  
-  
+
+
+
+
+
+
 
 </body>
 </html>

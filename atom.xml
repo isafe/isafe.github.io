@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[iSec]]></title>
-  
+  <title><![CDATA[iSecLab]]></title>
+  <subtitle><![CDATA[不会机器学习的程序员不是好运维]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.isec.me/"/>
   <updated>2015-05-30T00:01:36.000Z</updated>
@@ -18,7 +18,7 @@
     <title><![CDATA[Google Authenticator + SSH public key 实现两步认证]]></title>
     <link href="http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-%E5%AE%9E%E7%8E%B0%E4%B8%A4%E6%AD%A5%E8%AE%A4%E8%AF%81/"/>
     <id>http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/</id>
-    <published>2015-05-29T23:58:19.000Z</published>
+    <published>2015-05-29T11:58:19.000Z</published>
     <updated>2015-05-30T00:01:36.000Z</updated>
     <content type="html"><![CDATA[<p>OpenSSH 版本6.2以上才支持AuthenticationMethods</p>
 <p>1,安装依赖：<br>Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:</p>
@@ -100,7 +100,7 @@ Last <span class="attribute">login</span>: Thu Aug <span class="number">14</span
     <title><![CDATA[Postgresql常用命令]]></title>
     <link href="http://blog.isec.me/2015/05/28/Postgresql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>http://blog.isec.me/2015/05/28/Postgresql常用命令/</id>
-    <published>2015-05-29T00:11:06.000Z</published>
+    <published>2015-05-28T12:11:06.000Z</published>
     <updated>2015-05-29T00:12:04.000Z</updated>
     <content type="html"><![CDATA[<p>连接数据库, 默认的用户和数据库是postgres</p>
 <pre><code>psql -<span class="keyword">U</span> user -<span class="keyword">d</span> dbname
@@ -140,7 +140,7 @@ Last <span class="attribute">login</span>: Thu Aug <span class="number">14</span
     <title><![CDATA[CentOS 6.5 源码安装PostgreSQL]]></title>
     <link href="http://blog.isec.me/2015/05/27/CentOS-6-5-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85PostgreSQL/"/>
     <id>http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/</id>
-    <published>2015-05-28T00:02:40.000Z</published>
+    <published>2015-05-27T12:02:40.000Z</published>
     <updated>2015-05-29T00:12:22.000Z</updated>
     <content type="html"><![CDATA[<h3 id="安装依赖：">安装依赖：</h3><pre><code>yum install <span class="keyword">readline</span> <span class="keyword">readline</span>-devel make zlib zlib-devel 
 </code></pre><h3 id="下载源码：">下载源码：</h3><pre><code>wget <span class="string">https:</span><span class="comment">//ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz</span>
@@ -189,8 +189,8 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
     <title><![CDATA[Hexo静态博客使用指南]]></title>
     <link href="http://blog.isec.me/2015/05/24/Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
     <id>http://blog.isec.me/2015/05/24/Hexo静态博客使用指南/</id>
-    <published>2015-05-24T23:41:36.000Z</published>
-    <updated>2015-05-28T00:01:32.000Z</updated>
+    <published>2015-05-24T11:41:36.000Z</published>
+    <updated>2016-11-16T13:11:13.239Z</updated>
     <content type="html"><![CDATA[<p>安装Hexo<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="operator"><span class="keyword">install</span> npm -y</span><br><span class="line">npm config <span class="keyword">set</span> registry <span class="keyword">http</span>://registry.npm.taobao.org/</span><br><span class="line">npm <span class="keyword">install</span> hexo-cli -<span class="keyword">g</span></span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">hexo</span> init <span class="keyword">blog</span><br><span class="line"></span><span class="label">cd</span> <span class="keyword">blog</span></span><br></pre></td></tr></table></figure>
 <p>Hexo常用插件安装与配置</p>
@@ -202,6 +202,8 @@ PATH=/usr/<span class="built_in">local</span>/pgsql/bin:<span class="variable">$
     </summary>
     
       <category term="Github" scheme="http://blog.isec.me/tags/Github/"/>
+    
+      <category term="Github Pages" scheme="http://blog.isec.me/tags/Github-Pages/"/>
     
       <category term="Hexo" scheme="http://blog.isec.me/tags/Hexo/"/>
     
