@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <title>Google Authenticator + SSH public key 实现两步认证 | iSec | SecLab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="安全,Linux安全">
+  <meta name="description" content="OpenSSH 版本6.2以上才支持AuthenticationMethods
+安装依赖：Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:
+yum install git pam-devel make gcc-c++ wget -y
+Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:
+apt-get install g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Authenticator + SSH public key 实现两步认证">
+<meta property="og:url" content="http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/index.html">
+<meta property="og:site_name" content="iSec">
+<meta property="og:description" content="OpenSSH 版本6.2以上才支持AuthenticationMethods
+安装依赖：Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:
+yum install git pam-devel make gcc-c++ wget -y
+Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:
+apt-get install g">
+<meta property="og:updated_time" content="2016-11-17T03:32:03.937Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google Authenticator + SSH public key 实现两步认证">
+<meta name="twitter:description" content="OpenSSH 版本6.2以上才支持AuthenticationMethods
+安装依赖：Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:
+yum install git pam-devel make gcc-c++ wget -y
+Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:
+apt-get install g">
+  
+    <link rel="alternative" href="/atom.xml" title="iSec" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="//placekitten.com/200/200?image=13"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏格兰雨季</h5>
+          <a href="mailto:linuxsec@qq.com" title="linuxsec@qq.com" class="mail">linuxsec@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/isafe" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>iSec &copy; 2014 - 2016</p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次</span>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Google Authenticator + SSH public key 实现两步认证</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">Google Authenticator + SSH public key 实现两步认证</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-05-29T11:58:19.000Z" itemprop="datePublished" class="page-time">
+  2015-05-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux安全/">Linux安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装依赖："><span class="post-toc-number">1.</span> <span class="post-toc-text">安装依赖：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#谷歌身份验证器模块："><span class="post-toc-number">2.</span> <span class="post-toc-text">谷歌身份验证器模块：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行google-authenticator开始生成密钥信息"><span class="post-toc-number">3.</span> <span class="post-toc-text">运行google-authenticator开始生成密钥信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置SSH使用谷歌身份验证器模块"><span class="post-toc-number">4.</span> <span class="post-toc-text">配置SSH使用谷歌身份验证器模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编辑-etc-pam-d-sshd-添加如下："><span class="post-toc-number">4.1.</span> <span class="post-toc-text">编辑/etc/pam.d/sshd 添加如下：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编辑-etc-ssh-sshd-config-修改"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">编辑/etc/ssh/sshd_config,修改</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重启SSH服务"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">重启SSH服务</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#手机端安装Google-身份验证器"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">手机端安装Google 身份验证器</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Google-Authenticator-SSH-public-key-实现两步认证" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Google Authenticator + SSH public key 实现两步认证</h1>
+        <div class="post-meta">
+            <time datetime="2015-05-29T11:58:19.000Z" itemprop="datePublished" class="post-time">
+  2015-05-29
+</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux安全/">Linux安全</a></li></ul>
+
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>OpenSSH 版本6.2以上才支持AuthenticationMethods</p>
+<h3 id="安装依赖："><a href="#安装依赖：" class="headerlink" title="安装依赖："></a>安装依赖：</h3><p>Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:</p>
+<pre><code>yum install git pam-devel make gcc-c++ wget -y
+</code></pre><p>Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:</p>
+<pre><code>apt-get install git libpam0g-dev make gcc-c++ wget -y
+</code></pre><h3 id="谷歌身份验证器模块："><a href="#谷歌身份验证器模块：" class="headerlink" title="谷歌身份验证器模块："></a>谷歌身份验证器模块：</h3><pre><code>git clone https://github.com/google/google-authenticator.git
+cd google-authenticator/libpam
+./bootstrap.sh
+make &amp;&amp; make install
+</code></pre><h3 id="运行google-authenticator开始生成密钥信息"><a href="#运行google-authenticator开始生成密钥信息" class="headerlink" title="运行google-authenticator开始生成密钥信息"></a>运行google-authenticator开始生成密钥信息</h3><pre><code>google-authenticator 
+
+Do you want authentication tokens to be time-based (y/n) y
+二维码地址
+https://www.google.com/chart?chs=200x200&amp;chld=M|0&amp;cht=qr&amp;chl=otpauth://totp/root@localhost%3Fsecret%XXXXXXXXXXXXXX
+Your new secret key is: XXXXXXXXXXXX
+Your verification code is 000000
+紧急码,只能使用一次
+Your emergency scratch codes are:
+  80801116
+  43011118
+  34981118
+  88321117
+  93711113
+
+Do you want me to update your &quot;/root/.google_authenticator&quot; file (y/n) y
+
+Do you want to disallow multiple uses of the same authentication
+token? This restricts you to one login about every 30s, but it increases
+your chances to notice or even prevent man-in-the-middle attacks (y/n) y
+#每30秒生成一个token
+By default, tokens are good for 30 seconds and in order to compensate for
+possible time-skew between the client and the server, we allow an extra
+token before and after the current time. If you experience problems with poor
+time synchronization, you can increase the window from its default
+size of 1:30min to about 4min. Do you want to do so (y/n) y
+
+If the computer that you are logging into isn&apos;t hardened against brute-force
+login attempts, you can enable rate-limiting for the authentication module.
+By default, this limits attackers to no more than 3 login attempts every 30s.
+Do you want to enable rate-limiting (y/n) y
+</code></pre><h3 id="配置SSH使用谷歌身份验证器模块"><a href="#配置SSH使用谷歌身份验证器模块" class="headerlink" title="配置SSH使用谷歌身份验证器模块"></a>配置SSH使用谷歌身份验证器模块</h3><h4 id="编辑-etc-pam-d-sshd-添加如下："><a href="#编辑-etc-pam-d-sshd-添加如下：" class="headerlink" title="编辑/etc/pam.d/sshd 添加如下："></a>编辑/etc/pam.d/sshd 添加如下：</h4><pre><code>auth sufficient pam_google_authenticator.so
+注释：
+auth       include      password-auth
+</code></pre><h4 id="编辑-etc-ssh-sshd-config-修改"><a href="#编辑-etc-ssh-sshd-config-修改" class="headerlink" title="编辑/etc/ssh/sshd_config,修改"></a>编辑/etc/ssh/sshd_config,修改</h4><pre><code>PubkeyAuthentication yes
+ChallengeResponseAuthentication yes
+AuthenticationMethods publickey,keyboard-interactive
+PasswordAuthentication no
+UsePAM yes
+</code></pre><h4 id="重启SSH服务"><a href="#重启SSH服务" class="headerlink" title="重启SSH服务"></a>重启SSH服务</h4><pre><code>service sshd restart
+</code></pre><h4 id="手机端安装Google-身份验证器"><a href="#手机端安装Google-身份验证器" class="headerlink" title="手机端安装Google 身份验证器"></a>手机端安装Google 身份验证器</h4><p>Andorid版<br><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" rel="external">https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2</a><br>iOS版<br><a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605" target="_blank" rel="external">https://itunes.apple.com/cn/app/google-authenticator/id388497605</a><br>手机端打开google 身份验证器,扫二维码或者输入secret key</p>
+<pre><code>[root@localhost ~]# ssh 127.0.0.1
+Authenticated with partial success.
+Verification code: 6位动态码
+Last login: Thu Aug 14 15:20:16 2015 from 127.0.0.1
+[root@localhost ~]# 
+</code></pre>
+        </div>
+        
+        <blockquote class="post-copyright">
+    <div class="content">
+        本文永久链接：<a href="/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/" target="_blank" rel="external">http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/</a>
+    </div>
+    <footer>
+        <a href="http://blog.isec.me">
+            <img src="//placekitten.com/200/200?image=13" alt="苏格兰雨季">
+            苏格兰雨季
+        </a>
+    </footer>
+</blockquote>
+        
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux安全/">Linux安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
+
+
+            
+<div class="post-share-wrap">
+    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/05/28/Postgresql常用命令/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Postgresql常用命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+    
+<div class="duoshuo">
+	<div class="ds-thread" data-thread-key="Google-Authenticator-SSH-public-key-实现两步认证" data-title="Google Authenticator + SSH public key 实现两步认证" data-url="http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/"></div>
+</div>
+<script src="/js/embed.min.js?v=1.1.10"></script>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+var duoshuoQuery = {short_name:'isec', theme: 'none'}
+</script>
+
+
+
+
+</article>
+
+
+</div>
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "Google Authenticator + SSH public key 实现两步认证",
+pic: "//placekitten.com/200/200?image=13",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/" }
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.1.10"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

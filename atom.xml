@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>iSec</title>
+  <subtitle>SecLab</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.isec.me/"/>
+  <updated>2016-11-17T03:32:03.937Z</updated>
+  <id>http://blog.isec.me/</id>
+  
+  <author>
+    <name>苏格兰雨季</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Google Authenticator + SSH public key 实现两步认证</title>
+    <link href="http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-%E5%AE%9E%E7%8E%B0%E4%B8%A4%E6%AD%A5%E8%AE%A4%E8%AF%81/"/>
+    <id>http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/</id>
+    <published>2015-05-29T11:58:19.000Z</published>
+    <updated>2016-11-17T03:32:03.937Z</updated>
+    
+    <content type="html"><![CDATA[<p>OpenSSH 版本6.2以上才支持AuthenticationMethods</p>
+<h3 id="安装依赖："><a href="#安装依赖：" class="headerlink" title="安装依赖："></a>安装依赖：</h3><p>Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:</p>
+<pre><code>yum install git pam-devel make gcc-c++ wget -y
+</code></pre><p>Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:</p>
+<pre><code>apt-get install git libpam0g-dev make gcc-c++ wget -y
+</code></pre><h3 id="谷歌身份验证器模块："><a href="#谷歌身份验证器模块：" class="headerlink" title="谷歌身份验证器模块："></a>谷歌身份验证器模块：</h3><pre><code>git clone https://github.com/google/google-authenticator.git
+cd google-authenticator/libpam
+./bootstrap.sh
+make &amp;&amp; make install
+</code></pre><h3 id="运行google-authenticator开始生成密钥信息"><a href="#运行google-authenticator开始生成密钥信息" class="headerlink" title="运行google-authenticator开始生成密钥信息"></a>运行google-authenticator开始生成密钥信息</h3><pre><code>google-authenticator 
+
+Do you want authentication tokens to be time-based (y/n) y
+二维码地址
+https://www.google.com/chart?chs=200x200&amp;chld=M|0&amp;cht=qr&amp;chl=otpauth://totp/root@localhost%3Fsecret%XXXXXXXXXXXXXX
+Your new secret key is: XXXXXXXXXXXX
+Your verification code is 000000
+紧急码,只能使用一次
+Your emergency scratch codes are:
+  80801116
+  43011118
+  34981118
+  88321117
+  93711113
+
+Do you want me to update your &quot;/root/.google_authenticator&quot; file (y/n) y
+
+Do you want to disallow multiple uses of the same authentication
+token? This restricts you to one login about every 30s, but it increases
+your chances to notice or even prevent man-in-the-middle attacks (y/n) y
+#每30秒生成一个token
+By default, tokens are good for 30 seconds and in order to compensate for
+possible time-skew between the client and the server, we allow an extra
+token before and after the current time. If you experience problems with poor
+time synchronization, you can increase the window from its default
+size of 1:30min to about 4min. Do you want to do so (y/n) y
+
+If the computer that you are logging into isn&apos;t hardened against brute-force
+login attempts, you can enable rate-limiting for the authentication module.
+By default, this limits attackers to no more than 3 login attempts every 30s.
+Do you want to enable rate-limiting (y/n) y
+</code></pre><h3 id="配置SSH使用谷歌身份验证器模块"><a href="#配置SSH使用谷歌身份验证器模块" class="headerlink" title="配置SSH使用谷歌身份验证器模块"></a>配置SSH使用谷歌身份验证器模块</h3><h4 id="编辑-etc-pam-d-sshd-添加如下："><a href="#编辑-etc-pam-d-sshd-添加如下：" class="headerlink" title="编辑/etc/pam.d/sshd 添加如下："></a>编辑/etc/pam.d/sshd 添加如下：</h4><pre><code>auth sufficient pam_google_authenticator.so
+注释：
+auth       include      password-auth
+</code></pre><h4 id="编辑-etc-ssh-sshd-config-修改"><a href="#编辑-etc-ssh-sshd-config-修改" class="headerlink" title="编辑/etc/ssh/sshd_config,修改"></a>编辑/etc/ssh/sshd_config,修改</h4><pre><code>PubkeyAuthentication yes
+ChallengeResponseAuthentication yes
+AuthenticationMethods publickey,keyboard-interactive
+PasswordAuthentication no
+UsePAM yes
+</code></pre><h4 id="重启SSH服务"><a href="#重启SSH服务" class="headerlink" title="重启SSH服务"></a>重启SSH服务</h4><pre><code>service sshd restart
+</code></pre><h4 id="手机端安装Google-身份验证器"><a href="#手机端安装Google-身份验证器" class="headerlink" title="手机端安装Google 身份验证器"></a>手机端安装Google 身份验证器</h4><p>Andorid版<br><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" rel="external">https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2</a><br>iOS版<br><a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605" target="_blank" rel="external">https://itunes.apple.com/cn/app/google-authenticator/id388497605</a><br>手机端打开google 身份验证器,扫二维码或者输入secret key</p>
+<pre><code>[root@localhost ~]# ssh 127.0.0.1
+Authenticated with partial success.
+Verification code: 6位动态码
+Last login: Thu Aug 14 15:20:16 2015 from 127.0.0.1
+[root@localhost ~]# 
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;OpenSSH 版本6.2以上才支持AuthenticationMethods&lt;/p&gt;
+&lt;h3 id=&quot;安装依赖：&quot;&gt;&lt;a href=&quot;#安装依赖：&quot; class=&quot;headerlink&quot; title=&quot;安装依赖：&quot;&gt;&lt;/a&gt;安装依赖：&lt;/h3&gt;&lt;p&gt;Red Hat, Ce
+    
+    </summary>
+    
+      <category term="Linux安全" scheme="http://blog.isec.me/categories/Linux%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="安全" scheme="http://blog.isec.me/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="Linux安全" scheme="http://blog.isec.me/tags/Linux%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Postgresql常用命令</title>
+    <link href="http://blog.isec.me/2015/05/28/Postgresql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://blog.isec.me/2015/05/28/Postgresql常用命令/</id>
+    <published>2015-05-28T12:11:06.000Z</published>
+    <updated>2016-11-17T03:27:14.037Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="连接数据库-默认的用户和数据库是postgres"><a href="#连接数据库-默认的用户和数据库是postgres" class="headerlink" title="连接数据库, 默认的用户和数据库是postgres"></a>连接数据库, 默认的用户和数据库是postgres</h3><pre><code>psql -U user -d dbname
+</code></pre><h3 id="切换数据库-相当于mysql的use-dbname"><a href="#切换数据库-相当于mysql的use-dbname" class="headerlink" title="切换数据库,相当于mysql的use dbname"></a>切换数据库,相当于mysql的use dbname</h3><pre><code>\c dbname
+</code></pre><h3 id="列举数据库，相当于mysql的show-databases"><a href="#列举数据库，相当于mysql的show-databases" class="headerlink" title="列举数据库，相当于mysql的show databases"></a>列举数据库，相当于mysql的show databases</h3><pre><code>\l
+</code></pre><h3 id="列举表，相当于mysql的show-tables"><a href="#列举表，相当于mysql的show-tables" class="headerlink" title="列举表，相当于mysql的show tables"></a>列举表，相当于mysql的show tables</h3><pre><code>\dt
+</code></pre><h3 id="查看表结构，相当于desc-tblname-show-columns-from-tbname"><a href="#查看表结构，相当于desc-tblname-show-columns-from-tbname" class="headerlink" title="查看表结构，相当于desc tblname,show columns from tbname"></a>查看表结构，相当于desc tblname,show columns from tbname</h3><pre><code>\d tblname
+</code></pre><h3 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h3><pre><code>\di 
+</code></pre><h3 id="创建数据库："><a href="#创建数据库：" class="headerlink" title="创建数据库："></a>创建数据库：</h3><pre><code>create database dbname;
+create database dbname OWNER rolename;
+</code></pre><h3 id="删除数据库："><a href="#删除数据库：" class="headerlink" title="删除数据库："></a>删除数据库：</h3><pre><code>drop database dbname;  
+</code></pre><h3 id="重命名一个表："><a href="#重命名一个表：" class="headerlink" title="重命名一个表："></a>重命名一个表：</h3><pre><code>alter table oldtablename rename to newtablename; 
+</code></pre><h3 id="删除一个表："><a href="#删除一个表：" class="headerlink" title="删除一个表："></a>删除一个表：</h3><pre><code>drop table tablename; 
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;连接数据库-默认的用户和数据库是postgres&quot;&gt;&lt;a href=&quot;#连接数据库-默认的用户和数据库是postgres&quot; class=&quot;headerlink&quot; title=&quot;连接数据库, 默认的用户和数据库是postgres&quot;&gt;&lt;/a&gt;连接数据库, 默认的用户和
+    
+    </summary>
+    
+      <category term="运维" scheme="http://blog.isec.me/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Postgresql" scheme="http://blog.isec.me/tags/Postgresql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS 6.5 源码安装PostgreSQL</title>
+    <link href="http://blog.isec.me/2015/05/27/CentOS-6-5-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85PostgreSQL/"/>
+    <id>http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/</id>
+    <published>2015-05-27T12:02:40.000Z</published>
+    <updated>2016-11-17T03:22:59.347Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装依赖："><a href="#安装依赖：" class="headerlink" title="安装依赖："></a>安装依赖：</h2><pre><code>yum install readline readline-devel make zlib zlib-devel 
+</code></pre><h2 id="下载源码："><a href="#下载源码：" class="headerlink" title="下载源码："></a>下载源码：</h2><pre><code>wget https://ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz
+tar -zxf postgresql-9.3.2.tar.gz
+cd postgresql-9.3.2
+./configure --prefix=/usr/local/pgsql  --with-openssl 
+gmake
+gmake install
+</code></pre><h2 id="添加postgres用户，PostgreSQL的默认超级管理员"><a href="#添加postgres用户，PostgreSQL的默认超级管理员" class="headerlink" title="添加postgres用户，PostgreSQL的默认超级管理员"></a>添加postgres用户，PostgreSQL的默认超级管理员</h2><pre><code>groupadd postgres    
+adduser -g postgres postgres
+mkdir /usr/local/pgsql/data
+chown postgres:postgres /usr/local/pgsql/data
+</code></pre><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre><code>su - postgres
+/usr/local/pgsql/bin/psql -V
+</code></pre><h2 id="初始数据库的存储区间"><a href="#初始数据库的存储区间" class="headerlink" title="初始数据库的存储区间"></a>初始数据库的存储区间</h2><pre><code>/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data --locale=en_US.UTF8 -U postgres
+</code></pre><h2 id="启动数据库服务器"><a href="#启动数据库服务器" class="headerlink" title="启动数据库服务器"></a>启动数据库服务器</h2><pre><code>cp contrib/start-scripts/linux /etc/init.d/postgresql
+chmod a+x /etc/init.d/postgresql
+/etc/init.d/postgresql start
+</code></pre><h2 id="连接进数据库"><a href="#连接进数据库" class="headerlink" title="连接进数据库"></a>连接进数据库</h2><pre><code>/usr/local/pgsql/bin/createdb test
+/usr/local/pgsql/bin/psql -U postgres test
+</code></pre><h2 id="配置一下动态连接库的搜索路径和环境变量"><a href="#配置一下动态连接库的搜索路径和环境变量" class="headerlink" title="配置一下动态连接库的搜索路径和环境变量"></a>配置一下动态连接库的搜索路径和环境变量</h2><p>在~./bash_profile添加如下内容：</p>
+<pre><code>PGHOME=/usr/local/pgsql
+PGDATA=$PGHOME/data
+PATH=$PATH:$HOME/bin:$PGHOME/bin
+export PGHOME
+export PGDATA
+export PATH
+----------------------------
+LD_LIBRARY_PATH=/usr/local/pgsql/lib
+export LD_LIBRARY_PATH 
+PATH=/usr/local/pgsql/bin:$PATH
+export PATH
+</code></pre><p>PostgreSQL9.3安装完成。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装依赖：&quot;&gt;&lt;a href=&quot;#安装依赖：&quot; class=&quot;headerlink&quot; title=&quot;安装依赖：&quot;&gt;&lt;/a&gt;安装依赖：&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;yum install readline readline-devel make zlib zlib
+    
+    </summary>
+    
+      <category term="运维" scheme="http://blog.isec.me/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="PostgreSQL" scheme="http://blog.isec.me/tags/PostgreSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo静态博客使用指南</title>
+    <link href="http://blog.isec.me/2015/05/24/Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    <id>http://blog.isec.me/2015/05/24/Hexo静态博客使用指南/</id>
+    <published>2015-05-24T11:41:36.000Z</published>
+    <updated>2016-11-17T03:33:52.431Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install npm -y</div><div class="line">npm config set registry http://registry.npm.taobao.org/</div><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init blog</div><div class="line">cd blog</div></pre></td></tr></table></figure>
+<h3 id="Hexo常用插件安装与配置"><a href="#Hexo常用插件安装与配置" class="headerlink" title="Hexo常用插件安装与配置"></a>Hexo常用插件安装与配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">npm install hexo --save</div><div class="line">npm install hexo-generator-index --save</div><div class="line">npm install hexo-generator-archive --save</div><div class="line">npm install hexo-generator-category --save</div><div class="line">npm install hexo-generator-tag --save</div><div class="line">npm install hexo-server --save</div><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd blog</div><div class="line">npm install</div><div class="line">cd themes</div><div class="line">git clone https://github.com/moretwo/hexo-theme.git</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;安装Hexo&quot;&gt;&lt;a href=&quot;#安装Hexo&quot; class=&quot;headerlink&quot; title=&quot;安装Hexo&quot;&gt;&lt;/a&gt;安装Hexo&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://blog.isec.me/categories/Hexo/"/>
+    
+    
+      <category term="Github" scheme="http://blog.isec.me/tags/Github/"/>
+    
+      <category term="Hexo" scheme="http://blog.isec.me/tags/Hexo/"/>
+    
+      <category term="Github Pages" scheme="http://blog.isec.me/tags/Github-Pages/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <title>CentOS 6.5 源码安装PostgreSQL | iSec | SecLab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="PostgreSQL">
+  <meta name="description" content="安装依赖：yum install readline readline-devel make zlib zlib-devel 
+下载源码：wget https://ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz
+tar -zxf postgresql-9.3.2.tar.gz
+cd postgresql-9.3.2
+./con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 6.5 源码安装PostgreSQL">
+<meta property="og:url" content="http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/index.html">
+<meta property="og:site_name" content="iSec">
+<meta property="og:description" content="安装依赖：yum install readline readline-devel make zlib zlib-devel 
+下载源码：wget https://ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz
+tar -zxf postgresql-9.3.2.tar.gz
+cd postgresql-9.3.2
+./con">
+<meta property="og:updated_time" content="2016-11-17T03:22:59.347Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS 6.5 源码安装PostgreSQL">
+<meta name="twitter:description" content="安装依赖：yum install readline readline-devel make zlib zlib-devel 
+下载源码：wget https://ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz
+tar -zxf postgresql-9.3.2.tar.gz
+cd postgresql-9.3.2
+./con">
+  
+    <link rel="alternative" href="/atom.xml" title="iSec" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="//placekitten.com/200/200?image=13"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏格兰雨季</h5>
+          <a href="mailto:linuxsec@qq.com" title="linuxsec@qq.com" class="mail">linuxsec@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/isafe" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>iSec &copy; 2014 - 2016</p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次</span>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CentOS 6.5 源码安装PostgreSQL</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">CentOS 6.5 源码安装PostgreSQL</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-05-27T12:02:40.000Z" itemprop="datePublished" class="page-time">
+  2015-05-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/运维/">运维</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装依赖："><span class="post-toc-number">1.</span> <span class="post-toc-text">安装依赖：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载源码："><span class="post-toc-number">2.</span> <span class="post-toc-text">下载源码：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加postgres用户，PostgreSQL的默认超级管理员"><span class="post-toc-number">3.</span> <span class="post-toc-text">添加postgres用户，PostgreSQL的默认超级管理员</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试"><span class="post-toc-number">4.</span> <span class="post-toc-text">测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初始数据库的存储区间"><span class="post-toc-number">5.</span> <span class="post-toc-text">初始数据库的存储区间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#启动数据库服务器"><span class="post-toc-number">6.</span> <span class="post-toc-text">启动数据库服务器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#连接进数据库"><span class="post-toc-number">7.</span> <span class="post-toc-text">连接进数据库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置一下动态连接库的搜索路径和环境变量"><span class="post-toc-number">8.</span> <span class="post-toc-text">配置一下动态连接库的搜索路径和环境变量</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-CentOS-6-5-源码安装PostgreSQL" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CentOS 6.5 源码安装PostgreSQL</h1>
+        <div class="post-meta">
+            <time datetime="2015-05-27T12:02:40.000Z" itemprop="datePublished" class="post-time">
+  2015-05-27
+</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/运维/">运维</a></li></ul>
+
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="安装依赖："><a href="#安装依赖：" class="headerlink" title="安装依赖："></a>安装依赖：</h2><pre><code>yum install readline readline-devel make zlib zlib-devel 
+</code></pre><h2 id="下载源码："><a href="#下载源码：" class="headerlink" title="下载源码："></a>下载源码：</h2><pre><code>wget https://ftp.postgresql.org/pub/source/v9.3.2/postgresql-9.3.2.tar.gz
+tar -zxf postgresql-9.3.2.tar.gz
+cd postgresql-9.3.2
+./configure --prefix=/usr/local/pgsql  --with-openssl 
+gmake
+gmake install
+</code></pre><h2 id="添加postgres用户，PostgreSQL的默认超级管理员"><a href="#添加postgres用户，PostgreSQL的默认超级管理员" class="headerlink" title="添加postgres用户，PostgreSQL的默认超级管理员"></a>添加postgres用户，PostgreSQL的默认超级管理员</h2><pre><code>groupadd postgres    
+adduser -g postgres postgres
+mkdir /usr/local/pgsql/data
+chown postgres:postgres /usr/local/pgsql/data
+</code></pre><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre><code>su - postgres
+/usr/local/pgsql/bin/psql -V
+</code></pre><h2 id="初始数据库的存储区间"><a href="#初始数据库的存储区间" class="headerlink" title="初始数据库的存储区间"></a>初始数据库的存储区间</h2><pre><code>/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data --locale=en_US.UTF8 -U postgres
+</code></pre><h2 id="启动数据库服务器"><a href="#启动数据库服务器" class="headerlink" title="启动数据库服务器"></a>启动数据库服务器</h2><pre><code>cp contrib/start-scripts/linux /etc/init.d/postgresql
+chmod a+x /etc/init.d/postgresql
+/etc/init.d/postgresql start
+</code></pre><h2 id="连接进数据库"><a href="#连接进数据库" class="headerlink" title="连接进数据库"></a>连接进数据库</h2><pre><code>/usr/local/pgsql/bin/createdb test
+/usr/local/pgsql/bin/psql -U postgres test
+</code></pre><h2 id="配置一下动态连接库的搜索路径和环境变量"><a href="#配置一下动态连接库的搜索路径和环境变量" class="headerlink" title="配置一下动态连接库的搜索路径和环境变量"></a>配置一下动态连接库的搜索路径和环境变量</h2><p>在~./bash_profile添加如下内容：</p>
+<pre><code>PGHOME=/usr/local/pgsql
+PGDATA=$PGHOME/data
+PATH=$PATH:$HOME/bin:$PGHOME/bin
+export PGHOME
+export PGDATA
+export PATH
+----------------------------
+LD_LIBRARY_PATH=/usr/local/pgsql/lib
+export LD_LIBRARY_PATH 
+PATH=/usr/local/pgsql/bin:$PATH
+export PATH
+</code></pre><p>PostgreSQL9.3安装完成。</p>
+
+        </div>
+        
+        <blockquote class="post-copyright">
+    <div class="content">
+        本文永久链接：<a href="/2015/05/27/CentOS-6-5-源码安装PostgreSQL/" target="_blank" rel="external">http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/</a>
+    </div>
+    <footer>
+        <a href="http://blog.isec.me">
+            <img src="//placekitten.com/200/200?image=13" alt="苏格兰雨季">
+            苏格兰雨季
+        </a>
+    </footer>
+</blockquote>
+        
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostgreSQL/">PostgreSQL</a></li></ul>
+
+
+            
+<div class="post-share-wrap">
+    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/05/28/Postgresql常用命令/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Postgresql常用命令</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/05/24/Hexo静态博客使用指南/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hexo静态博客使用指南</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+    
+<div class="duoshuo">
+	<div class="ds-thread" data-thread-key="CentOS-6-5-源码安装PostgreSQL" data-title="CentOS 6.5 源码安装PostgreSQL" data-url="http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/"></div>
+</div>
+<script src="/js/embed.min.js?v=1.1.10"></script>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+var duoshuoQuery = {short_name:'isec', theme: 'none'}
+</script>
+
+
+
+
+</article>
+
+
+</div>
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "CentOS 6.5 源码安装PostgreSQL",
+pic: "//placekitten.com/200/200?image=13",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/" }
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.1.10"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
