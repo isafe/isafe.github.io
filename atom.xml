@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>iSec</title>
-  <subtitle>SecLab</subtitle>
+  <subtitle>梦想的代价非常高,但值得我们去追逐</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.isec.me/"/>
