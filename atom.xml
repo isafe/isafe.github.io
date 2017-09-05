@@ -19,14 +19,11 @@
     <title>Google Authenticator + SSH public key 实现两步认证</title>
     <link href="http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-%E5%AE%9E%E7%8E%B0%E4%B8%A4%E6%AD%A5%E8%AE%A4%E8%AF%81/"/>
     <id>http://blog.isec.me/2015/05/29/Google-Authenticator-SSH-public-key-实现两步认证/</id>
-    <published>2015-05-29T11:58:19.000Z</published>
+    <published>2015-05-29T23:58:19.000Z</published>
     <updated>2016-11-17T03:32:03.000Z</updated>
     
-    <content type="html"><![CDATA[<p>OpenSSH 版本6.2以上才支持AuthenticationMethods</p>
-<h3 id="安装依赖："><a href="#安装依赖：" class="headerlink" title="安装依赖："></a>安装依赖：</h3><p>Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:</p>
-<pre><code>yum install git pam-devel make gcc-c++ wget -y
-</code></pre><p>Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:</p>
-<pre><code>apt-get install git libpam0g-dev make gcc-c++ wget -y
+    <content type="html"><![CDATA[<p>OpenSSH 版本6.2以上才支持AuthenticationMethods</p><h3 id="安装依赖："><a href="#安装依赖：" class="headerlink" title="安装依赖："></a>安装依赖：</h3><p>Red Hat, CentOS， Fedora 系统需要安装 pam-devel 包:</p><pre><code>yum install git pam-devel make gcc-c++ wget -y
+</code></pre><p>Ubuntu，Linux Mint，Debian 系统需要安装‘libpam0g-dev包:</p><pre><code>apt-get install git libpam0g-dev make gcc-c++ wget -y
 </code></pre><h3 id="谷歌身份验证器模块："><a href="#谷歌身份验证器模块：" class="headerlink" title="谷歌身份验证器模块："></a>谷歌身份验证器模块：</h3><pre><code>git clone https://github.com/google/google-authenticator.git
 cd google-authenticator/libpam
 ./bootstrap.sh
@@ -71,8 +68,7 @@ AuthenticationMethods publickey,keyboard-interactive
 PasswordAuthentication no
 UsePAM yes
 </code></pre><h4 id="重启SSH服务"><a href="#重启SSH服务" class="headerlink" title="重启SSH服务"></a>重启SSH服务</h4><pre><code>service sshd restart
-</code></pre><h4 id="手机端安装Google-身份验证器"><a href="#手机端安装Google-身份验证器" class="headerlink" title="手机端安装Google 身份验证器"></a>手机端安装Google 身份验证器</h4><p>Andorid版<br><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" rel="external">https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2</a><br>iOS版<br><a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605" target="_blank" rel="external">https://itunes.apple.com/cn/app/google-authenticator/id388497605</a><br>手机端打开google 身份验证器,扫二维码或者输入secret key</p>
-<pre><code>[root@localhost ~]# ssh 127.0.0.1
+</code></pre><h4 id="手机端安装Google-身份验证器"><a href="#手机端安装Google-身份验证器" class="headerlink" title="手机端安装Google 身份验证器"></a>手机端安装Google 身份验证器</h4><p>Andorid版<br><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" rel="external">https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2</a><br>iOS版<br><a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605" target="_blank" rel="external">https://itunes.apple.com/cn/app/google-authenticator/id388497605</a><br>手机端打开google 身份验证器,扫二维码或者输入secret key</p><pre><code>[root@localhost ~]# ssh 127.0.0.1
 Authenticated with partial success.
 Verification code: 6位动态码
 Last login: Thu Aug 14 15:20:16 2015 from 127.0.0.1
@@ -81,8 +77,7 @@ Last login: Thu Aug 14 15:20:16 2015 from 127.0.0.1
     
     <summary type="html">
     
-      &lt;p&gt;OpenSSH 版本6.2以上才支持AuthenticationMethods&lt;/p&gt;
-&lt;h3 id=&quot;安装依赖：&quot;&gt;&lt;a href=&quot;#安装依赖：&quot; class=&quot;headerlink&quot; title=&quot;安装依赖：&quot;&gt;&lt;/a&gt;安装依赖：&lt;/h3&gt;&lt;p&gt;Red Hat, Ce
+      &lt;p&gt;OpenSSH 版本6.2以上才支持AuthenticationMethods&lt;/p&gt;&lt;h3 id=&quot;安装依赖：&quot;&gt;&lt;a href=&quot;#安装依赖：&quot; class=&quot;headerlink&quot; title=&quot;安装依赖：&quot;&gt;&lt;/a&gt;安装依赖：&lt;/h3&gt;&lt;p&gt;Red Hat, Cen
     
     </summary>
     
@@ -99,7 +94,7 @@ Last login: Thu Aug 14 15:20:16 2015 from 127.0.0.1
     <title>Postgresql常用命令</title>
     <link href="http://blog.isec.me/2015/05/28/Postgresql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>http://blog.isec.me/2015/05/28/Postgresql常用命令/</id>
-    <published>2015-05-28T12:11:06.000Z</published>
+    <published>2015-05-29T00:11:06.000Z</published>
     <updated>2016-11-17T03:27:14.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="连接数据库-默认的用户和数据库是postgres"><a href="#连接数据库-默认的用户和数据库是postgres" class="headerlink" title="连接数据库, 默认的用户和数据库是postgres"></a>连接数据库, 默认的用户和数据库是postgres</h3><pre><code>psql -U user -d dbname
@@ -132,7 +127,7 @@ create database dbname OWNER rolename;
     <title>CentOS 6.5 源码安装PostgreSQL</title>
     <link href="http://blog.isec.me/2015/05/27/CentOS-6-5-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85PostgreSQL/"/>
     <id>http://blog.isec.me/2015/05/27/CentOS-6-5-源码安装PostgreSQL/</id>
-    <published>2015-05-27T12:02:40.000Z</published>
+    <published>2015-05-28T00:02:40.000Z</published>
     <updated>2016-11-17T03:22:59.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="安装依赖："><a href="#安装依赖：" class="headerlink" title="安装依赖："></a>安装依赖：</h2><pre><code>yum install readline readline-devel make zlib zlib-devel 
@@ -154,8 +149,7 @@ chmod a+x /etc/init.d/postgresql
 /etc/init.d/postgresql start
 </code></pre><h2 id="连接进数据库"><a href="#连接进数据库" class="headerlink" title="连接进数据库"></a>连接进数据库</h2><pre><code>/usr/local/pgsql/bin/createdb test
 /usr/local/pgsql/bin/psql -U postgres test
-</code></pre><h2 id="配置一下动态连接库的搜索路径和环境变量"><a href="#配置一下动态连接库的搜索路径和环境变量" class="headerlink" title="配置一下动态连接库的搜索路径和环境变量"></a>配置一下动态连接库的搜索路径和环境变量</h2><p>在~./bash_profile添加如下内容：</p>
-<pre><code>PGHOME=/usr/local/pgsql
+</code></pre><h2 id="配置一下动态连接库的搜索路径和环境变量"><a href="#配置一下动态连接库的搜索路径和环境变量" class="headerlink" title="配置一下动态连接库的搜索路径和环境变量"></a>配置一下动态连接库的搜索路径和环境变量</h2><p>在~./bash_profile添加如下内容：</p><pre><code>PGHOME=/usr/local/pgsql
 PGDATA=$PGHOME/data
 PATH=$PATH:$HOME/bin:$PGHOME/bin
 export PGHOME
@@ -166,8 +160,7 @@ LD_LIBRARY_PATH=/usr/local/pgsql/lib
 export LD_LIBRARY_PATH 
 PATH=/usr/local/pgsql/bin:$PATH
 export PATH
-</code></pre><p>PostgreSQL9.3安装完成。</p>
-]]></content>
+</code></pre><p>PostgreSQL9.3安装完成。</p>]]></content>
     
     <summary type="html">
     
@@ -186,14 +179,10 @@ export PATH
     <title>Hexo静态博客使用指南</title>
     <link href="http://blog.isec.me/2015/05/24/Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
     <id>http://blog.isec.me/2015/05/24/Hexo静态博客使用指南/</id>
-    <published>2015-05-24T11:41:36.000Z</published>
+    <published>2015-05-24T23:41:36.000Z</published>
     <updated>2016-11-17T03:33:52.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install npm -y</div><div class="line">npm config set registry http://registry.npm.taobao.org/</div><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init blog</div><div class="line">cd blog</div></pre></td></tr></table></figure>
-<h3 id="Hexo常用插件安装与配置"><a href="#Hexo常用插件安装与配置" class="headerlink" title="Hexo常用插件安装与配置"></a>Hexo常用插件安装与配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">npm install hexo --save</div><div class="line">npm install hexo-generator-index --save</div><div class="line">npm install hexo-generator-archive --save</div><div class="line">npm install hexo-generator-category --save</div><div class="line">npm install hexo-generator-tag --save</div><div class="line">npm install hexo-server --save</div><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd blog</div><div class="line">npm install</div><div class="line">cd themes</div><div class="line">git clone https://github.com/moretwo/hexo-theme.git</div></pre></td></tr></table></figure>
-]]></content>
+    <content type="html"><![CDATA[<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install npm -y</div><div class="line">npm config set registry http://registry.npm.taobao.org/</div><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init blog</div><div class="line">cd blog</div></pre></td></tr></table></figure><h3 id="Hexo常用插件安装与配置"><a href="#Hexo常用插件安装与配置" class="headerlink" title="Hexo常用插件安装与配置"></a>Hexo常用插件安装与配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">npm install hexo --save</div><div class="line">npm install hexo-generator-index --save</div><div class="line">npm install hexo-generator-archive --save</div><div class="line">npm install hexo-generator-category --save</div><div class="line">npm install hexo-generator-tag --save</div><div class="line">npm install hexo-server --save</div><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd blog</div><div class="line">npm install</div><div class="line">cd themes</div><div class="line">git clone https://github.com/moretwo/hexo-theme.git</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
